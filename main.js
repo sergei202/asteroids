@@ -30,6 +30,7 @@ var game = {
 		canvas.addEventListener('mousedown', function(e) {
 // 			console.log('mousedown %o', e);
 			if(e.buttons===1) player.fire();
+// 			if(e.buttons===2) running = false;
 			self.mouse.button = e.buttons;
 		});
 		canvas.addEventListener('mouseup', function(e) {
@@ -79,8 +80,8 @@ var game = {
 	},
 
 	draw: function() {
-// 		this.ctx.strokeStyle = '#ccc';
-		this.ctx.clearRect(0,0, this.width,this.height);
+		this.ctx.fillStyle = '#000';
+		this.ctx.fillRect(0,0, this.width,this.height);
 // 		this.ctx.beginPath();
 // 		this.ctx.moveTo(0,this.height/2);
 // 		this.ctx.lineTo(this.width, this.height/2);
@@ -93,6 +94,7 @@ var game = {
 		bullets.forEach(a => a.draw(this.ctx));
 		player.draw(this.ctx);
 
+		this.ctx.fillStyle = 'white';
 		this.ctx.font = '12px serif';
 		this.ctx.fillText('asteroids: '+asteroids.length, 2,10);
 		this.ctx.fillText('bullets: '+bullets.length, 2,20);

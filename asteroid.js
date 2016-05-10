@@ -2,7 +2,7 @@
 
 class Asteroid {
 	constructor() {
-		this.color = 'red';
+		this.color = '#888';
 		this.dx = 3*Math.random()-1;
 		this.dy = 3*Math.random()-1;
 
@@ -10,9 +10,18 @@ class Asteroid {
 		this.y = Math.sign(this.dy) * -200;
 
 		this.angle = 0;
-		this.width = 32;
-		this.height = 32;
+		this.width = 16;
+		this.height = 16;
 		this.active = true;
+
+		this.points = [];
+		var angle=0, sides=4, x,y;
+		for(var i=0;i<sides;i++) {
+			angle += (0.8 + 0.5*(Math.random()-0.5)) * (Math.PI*2 / sides);
+			x = this.width * Math.sin(angle);
+			y = this.height * Math.cos(angle);
+			this.points.push({x:x,y:y});
+		}
 	}
 
 	update() {
@@ -36,10 +45,10 @@ class Asteroid {
 		ctx.translate(game.width/2 + this.x, game.height/2 + this.y);
 		ctx.rotate(this.angle);
 		ctx.fillStyle = this.color;
-		ctx.strokeStyle = 'black';
+		ctx.strokeStyle = 'gray';
 		ctx.beginPath();
-		ctx.arc(0,0, this.width/2, 0,2*Math.PI);
 		if(this.hit) {
+			ctx.arc(0,0, this.width/2, 0,2*Math.PI);
 			ctx.fillStyle = ctx.strokeStyle = 'red';
 			ctx.fill();
 			this.dx = this.dy = 0;
@@ -47,8 +56,15 @@ class Asteroid {
 			this.height *= 0.9;
 			this.decay--;
 			if(!this.decay) this.active = false;
+		} else {
+			ctx.moveTo(0,this.height);
+			this.points.forEach(function(p) {
+				ctx.lineTo(p.x, p.y);
+			});
+			ctx.lineTo(0,this.height);
 		}
 		ctx.stroke();
+		ctx.fill();
 		ctx.restore();
 	}
 }
