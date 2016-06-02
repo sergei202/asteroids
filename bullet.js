@@ -31,4 +31,9 @@ class Bullet {
 // 		ctx.fill();
 		ctx.restore();
 	}
+
+	get top()    {return this.y - this.height/2;}
+	get bottom() {return this.y + this.height/2;}
+	get left()   {return this.x - this.height/2;}
+	get right()  {return this.x + this.height/2;}
 }

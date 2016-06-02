@@ -103,10 +103,15 @@ var game = {
 };
 
 function isCollision(a,b) {
-	return a.x <= b.x + b.width &&
-		a.x + a.width >= b.x &&
-		a.y <= b.y + b.height &&
-		a.y + a.height >= b.y;
+
+	game.ctx.fillStyle = 'red';
+// 	game.ctx.rec(a.top,a.
+
+
+	return a.left <= b.right &&
+		a.right >= b.left &&
+		a.top <= b.bottom &&
+		a.bottom >= b.top;
 }
 
 

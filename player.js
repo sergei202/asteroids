@@ -29,6 +29,14 @@ class Player {
 		ctx.closePath();
 		ctx.stroke();
 		ctx.fill();
+
+// 		ctx.strokeStyle='red'; ctx.strokeRect(this.top,this.left, this.bottom-this.top, this.right-this.left);
+
 		ctx.restore();
 	}
+
+	get top()    {return this.y - this.height/3;}
+	get bottom() {return this.y + this.height/3;}
+	get left()   {return this.x - this.height/3;}
+	get right()  {return this.x + this.height/3;}
 }
