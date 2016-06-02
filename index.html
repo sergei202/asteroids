@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Asteroids</title>
-	<script src="player.js"></script>
-	<script src="asteroid.js"></script>
-	<script src="bullet.js"></script>
-	<script src="main.js"></script>
 	<style>
-		#game {
-			border: 1px solid gray;
-			cursor: point; 
-			user-select: none;
-		}
+		body {margin:0px; padding:0px; overflow:hidden;}
+		canvas {border:1px solid #eee;}
 	</style>
+	<script src="js/sprite.js"></script>
+	<script src="js/player.js"></script>
+	<script src="js/asteroid.js"></script>
 </head>
 <body>
-	<canvas id="game" width=600 height=400></canvas>
+	<div style="text-align:center">
+		<canvas></canvas>
+	</div>
+
+	<script src="js/game.js"></script>
 </body>
 </html>
