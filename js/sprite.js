@@ -9,13 +9,16 @@ class Sprite {
 		this.h = h;
 		this.dx = 0;
 		this.dy = 0;
+		this.angle = 0;
 	}
 
 	draw() {
 		this.ctx.save();
-		this.ctx.translate(this.ctx.width/2, this.ctx.height/2);
+
+		this.ctx.translate(this.ctx.width/2 + this.x, this.ctx.height/2 - this.y);
+		this.ctx.rotate((Math.PI/180)*this.angle);
 		this.ctx.strokeStyle = this.color;
-		this.ctx.strokeRect(this.left,-this.top, this.w,this.h);
+		this.ctx.strokeRect(-this.w/2,-this.h/2, this.w,this.h);
 		this.ctx.restore();
 	}
 
@@ -31,6 +34,7 @@ class Sprite {
 		}
 		this.x += this.dx;
 		this.y += this.dy;
+		this.angle += 1;
 	}
 
 	offCanvas() {
