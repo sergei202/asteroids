@@ -15,19 +15,19 @@ class Sprite {
 		this.ctx.save();
 		this.ctx.translate(this.ctx.width/2, this.ctx.height/2);
 		this.ctx.strokeStyle = this.color;
-		this.ctx.strokeRect(this.left,this.top, this.w,this.h);
+		this.ctx.strokeRect(this.left,-this.top, this.w,this.h);
 		this.ctx.restore();
 	}
 
 	get left()   {return this.x-this.w/2;}
 	get right()  {return this.x+this.w/2;}
-	get top()    {return this.y-this.h/2;}
-	get bottom() {return this.y+this.h/2;}
+	get top()    {return this.y+this.h/2;}
+	get bottom() {return this.y-this.h/2;}
 
 	update() {
 		if(this.offCanvas()) {
 			if(this.left < -this.ctx.width/2  || this.right  > this.ctx.width/2)  this.dx *= -1;
-			if(this.top  < -this.ctx.height/2 || this.bottom > this.ctx.height/2) this.dy *= -1;
+			if(this.bottom < -this.ctx.height/2 || this.top > this.ctx.height/2) this.dy *= -1;
 		}
 		this.x += this.dx;
 		this.y += this.dy;
@@ -36,14 +36,14 @@ class Sprite {
 	offCanvas() {
 		return this.left   < -this.ctx.width/2
 			|| this.right  >  this.ctx.width/2
-			|| this.top    < -this.ctx.height/2
-			|| this.bottom >  this.ctx.height/2;
+			|| this.top    > this.ctx.height/2
+			|| this.bottom < -this.ctx.height/2;
 	}
 
 	static isCollision(a,b) {
 		return a.right >= b.left
 			&& a.left <= b.right
-			&& a.top <= b.bottom
-			&& a.bottom >= b.top;
+			&& a.top >= b.bottom
+			&& a.bottom <= b.top;
 	}
 }

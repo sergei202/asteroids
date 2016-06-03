@@ -3,6 +3,7 @@
 class Game {
 	constructor(w,h) {
 		this.initCanvas(w,h);
+		this.initInput();
 		this.initSprites();
 		this.startLoop();
 	}
@@ -16,16 +17,29 @@ class Game {
 		this.ctx.height = h;
 	}
 
+	initInput() {
+		this.keys = {};
+		document.addEventListener('keyup',   this.onKeyEvent.bind(this));
+		document.addEventListener('keydown', this.onKeyEvent.bind(this));
+	}
+
+	onKeyEvent(event) {
+		var state = event.type==='keydown';
+		this.keys[event.key] = state;
+	}
+
 	initSprites() {
 		this.sprites = [];
-// 		for(var i=0;i<32;i++) {
-// 			this.sprites.push(new Sprite(this.ctx, 200 + Math.sin(i/5)*100, 200 + Math.cos(i/5)*100, 4,4));
-// 		}
-		this.player = new Player(this.ctx, 0,0);
+
+		this.player = new Player(this.ctx, 0,100);
 		this.sprites.push(this.player);
-		
-// 		this.sprites.push(new Asteroid(this.ctx, -100,0));
-// 		this.sprites[1].dx = 1;
+
+// 		for(var i=0;i<32;i++) {
+// 			this.sprites.push(new Sprite(this.ctx, Math.sin(i/5)*100,  Math.cos(i/5)*100, 4,4));
+// 		}
+
+// 		this.sprites.push(new Sprite(this.ctx, -0,0, 32,32));
+// 		this.sprites[1].dx = 0;
 // 		this.sprites[1].dy = 0;
 
 		for(var i=0;i<4;i++) {
@@ -54,15 +68,19 @@ class Game {
 			this.ctx.stroke();
 		}
 		this.drawSprites();
+
+		this.player.handleKeys(this.keys);
+
 		this.sprites.forEach((sprite,i) => {
 			sprite.update();
 			if(i>0) {
 				if(Sprite.isCollision(this.player, sprite)) {
 					console.log('COLLISION');
+					sprite.dx *= -1;
+					sprite.dy *= -1;
 				}
 			}
 		});
-
 
 		requestAnimationFrame(this.gameLoop.bind(this));
 	}
