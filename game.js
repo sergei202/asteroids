@@ -6,7 +6,7 @@ var ctx = canvas.getContext('2d');
 var WIDTH = ctx.canvas.width;
 var HEIGHT = ctx.canvas.height;
 
-var player = new Player();
+
 
 function guideLines() {
 	ctx.strokeStyle = 'gray';
@@ -18,11 +18,20 @@ function guideLines() {
 }
 
 
+var players = [];
+for(var i=0;i<10;i++) {
+	players.push(new Player(50*i, 50*i));
+}
+
 function drawGame() {
 	ctx.clearRect(0,0,WIDTH,HEIGHT);
 	guideLines();
-	player.update();
-	player.draw();
+
+	players.forEach(function(player) {
+		player.update();
+		player.draw();
+	});
+
 }
 
 setInterval(drawGame, 1000/60);
