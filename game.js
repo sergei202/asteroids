@@ -19,11 +19,9 @@ setInterval(function() {
 	angle += 0.01;
 }, 10);*/
 
-// return;
-
 
 function guideLines() {
-	ctx.strokeStyle = 'gray';
+	ctx.strokeStyle = '#eee';
 	ctx.moveTo(WIDTH/2,0);
 	ctx.lineTo(WIDTH/2,HEIGHT);
 	ctx.moveTo(0, HEIGHT/2);
@@ -35,7 +33,7 @@ var player = new Player(0,0);
 
 var asteroids = [];
 for(var i=0;i<5;i++) {
-	asteroids.push(new Asteroid(-100 + 30*i, 100 + 30*i));
+	asteroids.push(new Asteroid(-100 + 30*i, 10 + 30*i));
 }
 
 function gameLoop() {

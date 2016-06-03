@@ -19,10 +19,10 @@ class Sprite {
 		this.x += this.dx;
 		this.y += this.dy;
 
-		if(this.x<=-WIDTH/2 || this.x>=WIDTH/2-this.w) {
+		if(this.left<=-WIDTH/2 || this.right>=WIDTH/2) {
 			this.dx *= -1;
 		}
-		if(this.y<=-HEIGHT/2 || this.y>=HEIGHT/2-this.h) {
+		if(this.bottom<=-HEIGHT/2 || this.top>=HEIGHT/2) {
 			this.dy *= -1;
 		}
 	}
