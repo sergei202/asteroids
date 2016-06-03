@@ -13,7 +13,7 @@ class Sprite {
 
 	draw() {
 		ctx.strokeStyle = this.color;
-		ctx.strokeRect(this.x + WIDTH/2, this.y + HEIGHT/2, this.w,this.h);
+		ctx.strokeRect(WIDTH/2 + this.x - this.w/2,  HEIGHT/2 + this.y - this.h/2, this.w,this.h);
 	}
 	update() {
 		this.x += this.dx;

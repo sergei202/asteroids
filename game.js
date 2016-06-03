@@ -7,7 +7,6 @@ var WIDTH = ctx.canvas.width;
 var HEIGHT = ctx.canvas.height;
 
 
-
 function guideLines() {
 	ctx.strokeStyle = 'gray';
 	ctx.moveTo(WIDTH/2,0);
@@ -39,7 +38,10 @@ function drawGame() {
 
 setInterval(drawGame, 1000/60);
 
-
+document.addEventListener('keydown', onKeyEvent);
+function onKeyEvent(event) {
+	console.log('onKeyEvent: %o', event.key);
+}
 
 
 
