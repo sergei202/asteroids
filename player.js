@@ -5,5 +5,6 @@ class Player extends Sprite {
 		super();
 		this.x = x;
 		this.y = y;
+		this.color = 'blue';
 	}
 }

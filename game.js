@@ -17,21 +17,24 @@ function guideLines() {
 	ctx.stroke();
 }
 
+var player = new Player(0,0);
 
-var players = [];
+var asteroids = [];
 for(var i=0;i<10;i++) {
-	players.push(new Player(50*i, 50*i));
+	asteroids.push(new Asteroid(45*i, 45*i));
 }
 
 function drawGame() {
 	ctx.clearRect(0,0,WIDTH,HEIGHT);
 	guideLines();
 
-	players.forEach(function(player) {
-		player.update();
-		player.draw();
-	});
+	player.draw();
+	player.update();
 
+	asteroids.forEach(function(asteroid) {
+		asteroid.update();
+		asteroid.draw();
+	});
 }
 
 setInterval(drawGame, 1000/60);

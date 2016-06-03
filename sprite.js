@@ -6,22 +6,23 @@ class Sprite {
 		this.y = y;
 		this.w = 32;
 		this.h = 32;
-		this.dx = 2;
-		this.dy = 2;
+		this.dx = 0;
+		this.dy = 0;
+		this.color = 'black';
 	}
 
 	draw() {
-		ctx.strokeStyle = 'black';
-		ctx.strokeRect(this.x,this.y, this.w,this.h);
+		ctx.strokeStyle = this.color;
+		ctx.strokeRect(this.x + WIDTH/2, this.y + HEIGHT/2, this.w,this.h);
 	}
 	update() {
 		this.x += this.dx;
 		this.y += this.dy;
 
-		if(this.x<=0 || this.x>=WIDTH-this.w) {
+		if(this.x<=-WIDTH/2 || this.x>=WIDTH/2-this.w) {
 			this.dx *= -1;
 		}
-		if(this.y<=0 || this.y>=HEIGHT-this.h) {
+		if(this.y<=-HEIGHT/2 || this.y>=HEIGHT/2-this.h) {
 			this.dy *= -1;
 		}
 	}
