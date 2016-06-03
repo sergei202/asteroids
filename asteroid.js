@@ -10,4 +10,16 @@ class Asteroid extends Sprite {
 		this.dx = 2;
 		this.dy = 2;
 	}
+	
+	update() {
+		this.x += this.dx;
+		this.y += this.dy;
+
+		if(this.left<=-WIDTH || this.right>=WIDTH) {
+			this.active = false;
+		}
+		if(this.bottom<=-HEIGHT || this.top>=HEIGHT) {
+			this.active = false;
+		}
+	}
 }
